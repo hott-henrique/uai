@@ -31,7 +31,6 @@ void expand(int n, int m, int t, int ci, int cj, string * room, int counter, int
 int main() {
     int N, M, T, ci, cj;
 
-
     cin >> N >> M >> T >> ci >> cj;
 
     string room[N];

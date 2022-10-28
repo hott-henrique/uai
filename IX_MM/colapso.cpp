@@ -11,15 +11,15 @@ int main() {
     int N, M, K, Q;
     cin >> N >> M >> K >> Q;
 
-    matrix country(N, vector<int>(M, 0));
+    matrix grid(N, vector<int>(M, 0));
 
     for (int i = 0; i < Q; i++) {
         int A, B, D;
         cin >> A >> B >> D;
-        country[A - 1][B - 1] = D;
+        grid[A - 1][B - 1] = D;
     }
 
-    auto z = pre_process(country);
+    auto z = pre_process(grid);
 
     int answ = -1;
 
@@ -46,7 +46,7 @@ int main() {
 
             if (czs == 0) {
                 /* The max value in that submatrix is the minimun amount of time to happen. */
-                int maxsm = find_max(country, l, c, K);
+                int maxsm = find_max(grid, l, c, K);
                 if (answ == -1 || maxsm < answ) {
                     answ = maxsm;
                 }
