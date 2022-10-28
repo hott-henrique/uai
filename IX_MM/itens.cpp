@@ -9,24 +9,7 @@ static const int moves[4][2] = {
     {  0, -1 }, // LEFT
 };
 
-void expand(int n, int m, int t, int ci, int cj, string * room, int counter, int * mat) {
-    int idx = (ci * m) + cj;
-
-    if (
-        counter > t || // Baloon on ground.
-        ci >= n || cj >= m || ci < 0 || cj < 0 || // Is out of bounderies?
-        room[ci][cj] == '#' || // Is the position blocked?
-        !(counter < mat[idx]) // Is it not a faster path?
-    ) return;
-
-    mat[idx] = counter;
-
-    for (int i = 0; i < 4; i++) {
-        int nci = ci + moves[i][0];
-        int ncj = cj + moves[i][1];
-        expand(n, m, t, nci, ncj, room, counter + 1, mat);
-    }
-}
+void expand(int n, int m, int t, int ci, int cj, string * room, int counter, int * mat);
 
 int main() {
     int N, M, T, ci, cj;
@@ -59,4 +42,23 @@ int main() {
          << possibles / factor << '\n';
 
     return 0;
+}
+
+void expand(int n, int m, int t, int ci, int cj, string * room, int counter, int * mat) {
+    int idx = (ci * m) + cj;
+
+    if (
+        counter > t || // Baloon on ground.
+        ci >= n || cj >= m || ci < 0 || cj < 0 || // Is out of bounderies?
+        room[ci][cj] == '#' || // Is the position blocked?
+        !(counter < mat[idx]) // Is it not a faster path?
+    ) return;
+
+    mat[idx] = counter;
+
+    for (int i = 0; i < 4; i++) {
+        int nci = ci + moves[i][0];
+        int ncj = cj + moves[i][1];
+        expand(n, m, t, nci, ncj, room, counter + 1, mat);
+    }
 }
