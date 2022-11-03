@@ -10,9 +10,9 @@ int main() {
 
         if (D == "0" && N == "0") break;
 
-        auto answ = remove(N.begin(), N.end(), D[0]);
+        auto e = remove(N.begin(), N.end(), D[0]);
 
-        N.erase(answ, N.end());
+        N.erase(e, N.end());
 
         auto b = find_if(N.begin(), N.end(), [](char c){ return c != '0'; });
 
